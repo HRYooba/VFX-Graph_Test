@@ -61,7 +61,7 @@
                         {
                             if (colCount == count) 
                             {
-                                return half4(x / (float)width, y / (float)height, 0, 1.0);
+                                return half4(x / (float)width, y / (float)height, col.b, 1.0);
                             }
                             count ++;
                         }

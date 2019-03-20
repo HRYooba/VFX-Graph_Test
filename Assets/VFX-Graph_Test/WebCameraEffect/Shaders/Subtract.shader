@@ -38,10 +38,10 @@
                 half4 result = half4(0.0, 0.0, 0.0, 1.0);
 
                 if (length(sub) > _Threshold) {
-                    result = half4(1, 1, 1, 1);
+                    result = half4(length(sub), length(sub), length(sub), 1);
                 }
 
-                return result;
+                return buffer;
             }
 
             ENDCG

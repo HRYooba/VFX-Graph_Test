@@ -19,23 +19,31 @@ public class WebCameraEffect : MonoBehaviour
     [SerializeField] CustomRenderTexture m_subtTexture;
     [SerializeField] CustomRenderTexture m_sortTexture;
     [SerializeField] VisualEffect m_vfx;
+    [SerializeField] InfraredSourceManager m_infrared;
+    [SerializeField] ColorSourceManager m_color;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        WebCamDevice[] devices = WebCamTexture.devices;
-        m_webcamTex = new WebCamTexture(devices[0].name, m_width, m_height, m_fps);
-        m_webcamTex.Play();
-
         m_subtMat = new Material(m_subtShader);
         m_subtTexture.material = m_subtMat;
 
         m_sortMat = new Material(m_sortShader);
         m_sortTexture.material = m_sortMat;
 
-        StartCoroutine(UpdateWebcamTex());
+        if (m_infrared == null || m_color == null)
+        {
+            WebCamDevice[] devices = WebCamTexture.devices;
+            m_webcamTex = new WebCamTexture(devices[0].name, m_width, m_height, m_fps);
+            m_webcamTex.Play();
+            StartCoroutine(UpdateWebcamTex());
+        }
+        else
+        {
+            StartCoroutine(UpdateKinectTex());
+        }
     }
 
     // Update is called once per frame
@@ -67,6 +75,20 @@ public class WebCameraEffect : MonoBehaviour
             m_webcamTexBuffer.SetPixels(m_webcamTex.GetPixels());
             yield return null;
             m_webcamTexBuffer.Apply();
-        }   
+        }
+    }
+
+    IEnumerator UpdateKinectTex()
+    {
+        m_vfx.SetTexture("ResultTex", m_sortTexture);
+        m_vfx.SetTexture("ColorTex", m_color.GetColorTexture());
+        m_sortMat.SetTexture("_MainTex", m_subtTexture);
+
+        while (true)
+        {
+            m_subtMat.SetTexture("_MainTex", m_color.GetColorTexture());
+            m_subtMat.SetTexture("_BufferTex", m_infrared.GetInfraredTexture());
+            yield return null;
+        }
     }
 }
