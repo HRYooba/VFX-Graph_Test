@@ -61,6 +61,7 @@ public class WebCameraEffect : MonoBehaviour
 
         m_webcamTexBuffer = new Texture2D(m_webcamTex.width, m_webcamTex.height);
 
+        m_vfx.SetTexture("ColorTex", m_webcamTex);
         m_vfx.SetTexture("ResultTex", m_sortTexture);
 
         m_subtMat.SetTexture("_MainTex", m_webcamTex);

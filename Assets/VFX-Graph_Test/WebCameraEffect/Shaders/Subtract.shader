@@ -41,7 +41,7 @@
                     result = half4(length(sub), length(sub), length(sub), 1);
                 }
 
-                return buffer;
+                return result;
             }
 
             ENDCG

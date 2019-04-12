@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1.725651, g: 1.506084, b: 1.0589478, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -560,8 +560,8 @@ MonoBehaviour:
   m_subtTexture: {fileID: 8600000, guid: 8c040037bd31b014fa6575c9895c5fbd, type: 2}
   m_sortTexture: {fileID: 8600000, guid: 3e3937ed9a9a1004bbfd5380e321f9a9, type: 2}
   m_vfx: {fileID: 1039992359}
-  m_infrared: {fileID: 1674556327}
-  m_color: {fileID: 1674556325}
+  m_infrared: {fileID: 0}
+  m_color: {fileID: 0}
 --- !u!4 &862431146
 Transform:
   m_ObjectHideFlags: 0
@@ -736,6 +736,9 @@ VisualEffect:
       m_Array: []
     m_NamedObject:
       m_Array:
+      - m_Value: {fileID: 0}
+        m_Name: ColorTex
+        m_Overridden: 0
       - m_Value: {fileID: 0}
         m_Name: ResultTex
         m_Overridden: 0
@@ -1064,7 +1067,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990290675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -8.26}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
